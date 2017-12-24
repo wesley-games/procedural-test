@@ -211,7 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fffabf9b7557463458595e7643a65b86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  texturerRenderer: {fileID: 181615346}
+  textureRenderer: {fileID: 181615346}
 --- !u!114 &1330973790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,12 +226,12 @@ MonoBehaviour:
   drawMode: 1
   mapWidth: 100
   mapHeight: 100
-  seed: 23
-  noiseScale: 25
-  octaves: 4
-  persistance: 0.7
-  lacunarity: 4.47
-  offset: {x: 13.44, y: 6}
+  scale: 25
+  octaves: 5
+  persistance: 0.5
+  lacunarity: 2
+  seed: 0
+  offset: {x: 0, y: 0}
   autoUpdate: 1
   regions:
   - name: Water Deep

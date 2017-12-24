@@ -12,12 +12,14 @@ public class MapGenerator : MonoBehaviour
 
     public int mapWidth;
     public int mapHeight;
-    public int seed;
-    public float noiseScale;
+    public float scale;
+
     public int octaves;
     [Range(0, 1)]
     public float persistance;
     public float lacunarity;
+
+    public int seed;
     public Vector2 offset;
 
     public bool autoUpdate;
@@ -26,9 +28,9 @@ public class MapGenerator : MonoBehaviour
 
     public void GenerateMap()
     {
-        float[,] noiseMap = Noise.GenerateNoiseMap(mapWidth, mapHeight, seed, noiseScale, octaves, persistance, lacunarity, offset);
-
+        float[,] noiseMap = Noise.GenerateNoiseMap(mapWidth, mapHeight, seed, scale, octaves, persistance, lacunarity, offset);
         Color[] colorMap = new Color[mapWidth * mapHeight];
+
         for (int y = 0; y < mapHeight; y++)
         {
             for (int x = 0; x < mapWidth; x++)
@@ -45,15 +47,16 @@ public class MapGenerator : MonoBehaviour
             }
         }
 
-        MapDisplay mapDisplay = FindObjectOfType<MapDisplay>();
+        MapDisplay display = FindObjectOfType<MapDisplay>();
         if (drawMode == DrawMode.NoiseMap)
         {
-            mapDisplay.DrawTexture(TextureGenerator.TextureFromHeightMap(noiseMap));
+            display.DrawTexture(TextureGenerator.TextureFromHeightMap(noiseMap));
         }
         else if (drawMode == DrawMode.ColorMap)
         {
-            mapDisplay.DrawTexture(TextureGenerator.TextureFromColorMap(colorMap, mapWidth, mapHeight));
+            display.DrawTexture(TextureGenerator.TextureFromColorMap(colorMap, mapWidth, mapHeight));
         }
+
     }
 
     void OnValidate()
